@@ -1,0 +1,54 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+management:
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: '*'
+  info:
+    git:
+      mode: full
+info:
+  app:
+    encoding: @project.build.sourceEncoding@
+    java:
+      source: @java.version@
+      target: @java.version@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          byr-gitlab:
+            client-id: #client-id
+            client-secret: #client-secret
+            authorization-grant-type: authorization_code
+            redirect-uri: '{baseUrl}/login/oauth2/code/{registrationId}'
+            client-name: 'BYR Gitlab'
+            scope:
+              - openid
+              - email
+              - profile
+        provider:
+          byr-gitlab:
+            issuer-uri: https://git.byr.moe
+            user-name-attribute: nickname
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  datasource:
+    url: jdbc:mariadb://localhost:3306/hostdiscovery
+    username: mariadb
+    password: mariadb
+    validation-query: SELECT 1
+    test-while-idle: true
+logging:
+  level:
+    org.springframework.web.client.RestTemplate: DEBUG
