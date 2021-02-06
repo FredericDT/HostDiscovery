@@ -194,6 +194,11 @@ const HostTable = ({title, user}) => {
                         title="time"
                         dataIndex={["lastReportLog", "time"]}
                         key="lastReportLog-time"
+                        render={
+                            (text, record, index) => {
+                                return text !== null && text.length > 0 ? new Date(text).toLocaleString(): '';
+                            }
+                        }
                     />
                 </Table.ColumnGroup>
                 <Table.Column
