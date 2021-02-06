@@ -21,6 +21,7 @@ const ReportLogTable = ({hostId, title}) => {
                         {title}
                     </Typography.Title>
             }
+            rowKey='id'
         >
             <Table.Column
                 title={"id"}

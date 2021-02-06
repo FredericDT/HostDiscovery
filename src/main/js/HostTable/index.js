@@ -107,11 +107,12 @@ const HostTable = ({title, user}) => {
                     },
                     rowExpandable: record => true,
                 }}
+                rowKey='id'
             >
                 <Table.Column
                     title="id"
                     dataIndex="id"
-                    key="id"
+                    key="host-id"
                 />
                 <Table.Column
                     title="custom label"
