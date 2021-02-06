@@ -56,7 +56,7 @@ const Index = ({title}) => {
             :
             <Spin spinning={requestLoading || !user || loading}>
                 {user && !loading ?
-                    <Form 
+                    <Form
                         onFinish={onFinish}
                         initialValues={
                             {
