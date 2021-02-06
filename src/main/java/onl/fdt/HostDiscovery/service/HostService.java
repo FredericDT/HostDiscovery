@@ -21,4 +21,5 @@ public interface HostService {
     public List<Host> all();
 
     public List<HostReportLog> getHostReportLogByHostId(UUID id);
+
 }

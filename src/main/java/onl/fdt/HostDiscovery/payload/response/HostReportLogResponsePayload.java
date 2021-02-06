@@ -12,7 +12,6 @@ public class HostReportLogResponsePayload implements Serializable {
         HostReportLogResponsePayload hostReportLogResponsePayload = new HostReportLogResponsePayload();
 
         hostReportLogResponsePayload.id = hostReportLog.getId();
-        hostReportLogResponsePayload.hostId = hostReportLog.getHost().getId();
         hostReportLogResponsePayload.hostname = hostReportLog.getHostname();
         hostReportLogResponsePayload.ip = hostReportLog.getIp();
         hostReportLogResponsePayload.time = hostReportLog.getTime();
@@ -22,18 +21,12 @@ public class HostReportLogResponsePayload implements Serializable {
 
     private UUID id;
 
-    private UUID hostId;
-
     private ZonedDateTime time;
     private String ip;
     private String hostname;
 
     public UUID getId() {
         return id;
-    }
-
-    public UUID getHostId() {
-        return hostId;
     }
 
     public ZonedDateTime getTime() {

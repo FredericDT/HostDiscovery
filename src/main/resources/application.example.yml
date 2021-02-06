@@ -49,6 +49,11 @@ spring:
     password: mariadb
     validation-query: SELECT 1
     test-while-idle: true
+  session:
+    store-type: redis
+  redis:
+    host: localhost
+    port: 6379
 logging:
   level:
     org.springframework.web.client.RestTemplate: DEBUG

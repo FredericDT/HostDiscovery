@@ -2,7 +2,6 @@ package onl.fdt.HostDiscovery.service.impl;
 
 import onl.fdt.HostDiscovery.entity.Host;
 import onl.fdt.HostDiscovery.entity.HostReportLog;
-import onl.fdt.HostDiscovery.entity.repository.HostReportLogRepository;
 import onl.fdt.HostDiscovery.entity.repository.HostRepository;
 import onl.fdt.HostDiscovery.exception.NotFoundException;
 import onl.fdt.HostDiscovery.service.HostService;
@@ -19,9 +18,6 @@ public class HostServiceImpl implements HostService {
 
     @Autowired
     HostRepository hostRepository;
-
-    @Autowired
-    private HostReportLogRepository hostReportLogRepository;
 
     @Autowired
     private OidcPrincipalService oidcPrincipalService;
@@ -89,6 +85,7 @@ public class HostServiceImpl implements HostService {
     @Override
     public List<HostReportLog> getHostReportLogByHostId(UUID id) {
         Host host = get(id);
-        return hostReportLogRepository.findByHostOrderByTimeDesc(host);
+        return host.getReportLogList();
     }
+
 }

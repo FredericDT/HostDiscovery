@@ -13,27 +13,42 @@ import java.util.UUID;
 public class Host implements Serializable {
     @Id
     @GeneratedValue
-    @Type(type="uuid-char")
+    @Type(type = "uuid-char")
     private UUID id;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private HostReportLog lastReportLog;
 
     @ElementCollection
     private List<String> userGroupList;
 
     private String customLabel;
 
-    public UUID getId() {
-        return id;
-    }
+    @OneToOne(cascade = CascadeType.DETACH)
+    private HostReportLog lastReportLog;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<HostReportLog> reportLogList;
 
     public HostReportLog getLastReportLog() {
         return lastReportLog;
     }
 
+    public List<HostReportLog> getReportLogList() {
+        return reportLogList;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
     public List<String> getUserGroupList() {
         return userGroupList;
+    }
+
+    public void setLastReportLog(HostReportLog lastReportLog) {
+        this.lastReportLog = lastReportLog;
+    }
+
+    public void setReportLogList(List<HostReportLog> reportLogList) {
+        this.reportLogList = reportLogList;
     }
 
     public String getCustomLabel() {
@@ -44,18 +59,12 @@ public class Host implements Serializable {
         this.customLabel = customLabel;
     }
 
-    public Host(HostReportLog lastReportLog, List<String> userGroupList) {
-        this.lastReportLog = lastReportLog;
+    public Host(List<String> userGroupList) {
         this.userGroupList = userGroupList;
     }
 
     public Host() {
-        this.lastReportLog = null;
         this.userGroupList = Collections.emptyList();
-    }
-
-    public void setLastReportLog(HostReportLog lastReportLog) {
-        this.lastReportLog = lastReportLog;
     }
 
     public void setUserGroupList(List<String> userGroupList) {
@@ -68,7 +77,6 @@ public class Host implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         Host host = (Host) o;
         return Objects.equals(id, host.id) &&
-                Objects.equals(lastReportLog, host.lastReportLog) &&
                 Objects.equals(userGroupList, host.userGroupList);
     }
 
