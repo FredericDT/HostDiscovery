@@ -2,6 +2,17 @@
 
 - 0.0.3-SNAPSHOT
 
+## Features
+
+- Get Host ip from Registered Hosts table.
+- OIDC Login.
+- Registered Hosts user group always synchronized with OIDC user group.
+- Any user in OIDC user group can view/manage hosts in Registered Hosts user group.
+- IPv6 supported.
+- Customized labels for Host.
+- Host report by HTTP(S).
+- View latest 100 report logs with its report time.
+
 ## Deploy Workflow
 
 1. Register an OIDC app at gitlab, select below scopes 
