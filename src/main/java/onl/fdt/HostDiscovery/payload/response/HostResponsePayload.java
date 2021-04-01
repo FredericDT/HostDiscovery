@@ -1,7 +1,6 @@
 package onl.fdt.HostDiscovery.payload.response;
 
 import onl.fdt.HostDiscovery.entity.Host;
-import onl.fdt.HostDiscovery.entity.HostReportLog;
 
 import java.io.Serializable;
 import java.util.List;
@@ -23,10 +22,8 @@ public class HostResponsePayload implements Serializable {
         payload.userGroupList = host.getUserGroupList();
         payload.customLabel = host.getCustomLabel();
 
-        HostReportLog lastHostReportLog = host.getLastReportLog();
-
-        if (lastHostReportLog != null) {
-            payload.lastReportLog = HostReportLogResponsePayload.build(lastHostReportLog);
+        if (host.getLastReportLog() != null) {
+            payload.lastReportLog = HostReportLogResponsePayload.build(host.getLastReportLog());
         }
 
         return payload;

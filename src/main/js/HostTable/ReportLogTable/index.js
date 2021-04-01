@@ -21,6 +21,7 @@ const ReportLogTable = ({hostId, title}) => {
                         {title}
                     </Typography.Title>
             }
+            rowKey='id'
         >
             <Table.Column
                 title={"id"}
@@ -44,6 +45,11 @@ const ReportLogTable = ({hostId, title}) => {
                 title={"time"}
                 dataIndex={"time"}
                 key={"time"}
+                render={
+                    (text, record, index) => {
+                        return text !== null && text.length > 0 ? new Date(text).toLocaleString(): '';
+                    }
+                }
             />
 
         </Table>

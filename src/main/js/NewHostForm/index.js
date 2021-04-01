@@ -56,7 +56,14 @@ const Index = ({title}) => {
             :
             <Spin spinning={requestLoading || !user || loading}>
                 {user && !loading ?
-                    <Form onFinish={onFinish}>
+                    <Form
+                        onFinish={onFinish}
+                        initialValues={
+                            {
+                                userGroupList: [user.userName]
+                            }
+                        }
+                    >
                         <Typography.Title>
                             {title}
                         </Typography.Title>
@@ -75,7 +82,6 @@ const Index = ({title}) => {
                                 mode={"multiple"}
                                 allowClear
                                 placeholder={"Select User Group"}
-                                defaultValue={user.userName}
                             >
                                 {
                                     (user ? user.userGroupList : []).map(item => (

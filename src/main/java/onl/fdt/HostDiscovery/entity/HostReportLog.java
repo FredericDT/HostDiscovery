@@ -10,16 +10,10 @@ import java.util.UUID;
 @Entity
 public class HostReportLog implements Serializable {
     public static class Builder {
-        private Host host;
 
         private ZonedDateTime time;
         private String ip;
         private String hostname;
-
-        public Builder setHost(Host host) {
-            this.host = host;
-            return this;
-        }
 
         public Builder setTime(ZonedDateTime time) {
             this.time = time;
@@ -37,7 +31,7 @@ public class HostReportLog implements Serializable {
         }
 
         public HostReportLog build() {
-            return new HostReportLog(host, time, ip, hostname);
+            return new HostReportLog(time, ip, hostname);
         }
     }
 
@@ -46,19 +40,12 @@ public class HostReportLog implements Serializable {
     @Type(type="uuid-char")
     private UUID id;
 
-    @OneToOne(cascade = CascadeType.DETACH)
-    private Host host;
-
     private ZonedDateTime time;
     private String ip;
     private String hostname;
 
     public UUID getId() {
         return id;
-    }
-
-    public Host getHost() {
-        return host;
     }
 
     public ZonedDateTime getTime() {
@@ -73,8 +60,7 @@ public class HostReportLog implements Serializable {
         return hostname;
     }
 
-    public HostReportLog(Host host, ZonedDateTime time, String ip, String hostname) {
-        this.host = host;
+    public HostReportLog(ZonedDateTime time, String ip, String hostname) {
         this.time = time;
         this.ip = ip;
         this.hostname = hostname;

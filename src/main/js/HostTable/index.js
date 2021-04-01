@@ -107,11 +107,12 @@ const HostTable = ({title, user}) => {
                     },
                     rowExpandable: record => true,
                 }}
+                rowKey='id'
             >
                 <Table.Column
                     title="id"
                     dataIndex="id"
-                    key="id"
+                    key="host-id"
                 />
                 <Table.Column
                     title="custom label"
@@ -193,6 +194,11 @@ const HostTable = ({title, user}) => {
                         title="time"
                         dataIndex={["lastReportLog", "time"]}
                         key="lastReportLog-time"
+                        render={
+                            (text, record, index) => {
+                                return text !== null && text.length > 0 ? new Date(text).toLocaleString(): '';
+                            }
+                        }
                     />
                 </Table.ColumnGroup>
                 <Table.Column

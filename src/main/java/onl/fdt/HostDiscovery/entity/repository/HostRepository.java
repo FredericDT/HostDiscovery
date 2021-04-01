@@ -10,4 +10,5 @@ import java.util.UUID;
 public interface HostRepository extends JpaRepository<Host, UUID> {
 
     List<Host> findDistinctByUserGroupListIn(Collection<String> userGroupList);
+
 }

@@ -40,14 +40,20 @@ const App = () => {
                             />
                         </a>
 
-                        <Menu.Item>
+                        <Menu.Item
+                            key={"menu-home"}
+                        >
                             <Link to={"/"}>Home</Link>
                         </Menu.Item>
                         {hasLogin() ? [
-                            <Menu.Item>
+                            <Menu.Item
+                                key={"menu-host"}
+                            >
                                 <Link to={"/host"}>Registered Hosts</Link>
                             </Menu.Item>,
-                            <Menu.Item>
+                            <Menu.Item
+                                key={"menu-host-new"}
+                            >
                                 <Link to={"/host/new"}>Register New Host</Link>
                             </Menu.Item>
                         ] : []}
