@@ -13,7 +13,7 @@ const HostTable = ({title, user}) => {
         path: '/api/v1/host'
     });
 
-    const [editingKey, setEditingKey] = React.useState(null);
+    const [editingHostId, setEditingHostId] = React.useState(null);
     const [alerts, setAlerts] = React.useState([]);
 
     const [form] = Form.useForm();
@@ -59,7 +59,7 @@ const HostTable = ({title, user}) => {
             });
         }
 
-        setEditingKey(null);
+        setEditingHostId(null);
     };
 
     return (
@@ -120,7 +120,7 @@ const HostTable = ({title, user}) => {
                     key="customLabel"
                     render={
                         (text, record, index) => {
-                            return editingKey !== record.key ?
+                            return editingHostId !== record.id ?
                                 <div>
                                     {text}
                                 </div>
@@ -142,7 +142,7 @@ const HostTable = ({title, user}) => {
                     key="userGroupList"
                     render={
                         (userGroupList, record, index) => (
-                            editingKey !== record.key ?
+                            editingHostId !== record.id ?
                                 <div>
                                     {userGroupList.map(principal => (
                                         <Tag color="blue" key={"userGroupList-" + principal}>
@@ -207,10 +207,10 @@ const HostTable = ({title, user}) => {
                     render={
                         (text, record) => (
                             <Space size="middle">
-                                {editingKey !== record.key ?
+                                {editingHostId !== record.id ?
                                     <a
                                         onClick={() => {
-                                            setEditingKey(record.key);
+                                            setEditingHostId(record.id);
                                         }}
                                     >
                                         Edit
@@ -225,7 +225,7 @@ const HostTable = ({title, user}) => {
                                         </a>,
                                         <a
                                             onClick={() => {
-                                                setEditingKey(null);
+                                                setEditingHostId(null);
                                             }}
                                         >
                                             Cancel
