@@ -88,7 +88,11 @@ public class HostServiceImpl implements HostService {
 
     @Override
     public List<HostReportLog> getHostReportLogByHostId(UUID id) {
-        Host host = get(id);
-        return hostReportLogRepository.findByHostOrderByTimeDesc(host);
+        Host host = this.get(id);
+        List<HostReportLog> reportLogList = hostReportLogRepository.findByHostOrderByTimeDesc(host);
+        if (reportLogList.size() > 100) {
+            reportLogList = reportLogList.subList(0, 100);
+        }
+        return reportLogList;
     }
 }
